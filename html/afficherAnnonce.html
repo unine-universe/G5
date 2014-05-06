@@ -47,13 +47,13 @@
 <div id="Maxibox">
 
 	<div class="TopLine">
-		<b>Titre</b>
+		<b>{{ titre }}</b>
 
 		<div class="TopPrix">
 				<table>
 					<tr>
-					<td><b>Prix :</b></td>
-					<td><i>"          "</i></td>
+					<td><b>Prix : </b></td>
+					<td><i>" {{ prix }} "</i></td>
 					</tr>
 				</table>
 		</div>
@@ -102,7 +102,7 @@
 <div id="DivDroite">
 		
 		<div id="ImgBoxTopImg">
-			<img src="../img/Selle.jpg" style="width:98%; height:98%; padding-bottom:1%; padding-top:1%; padding-left:1%; padding-right:1%">
+			<img src="{{ image }}" style="width:98%; height:98%; padding-bottom:1%; padding-top:1%; padding-left:1%; padding-right:1%">
 		</div>
 
 
