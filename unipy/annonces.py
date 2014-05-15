@@ -22,8 +22,9 @@ class Annonces(object):
     def annonce(self, a_id):
         db = openDB()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM annonce, picture WHERE id='{0}'".format(a_id))
+        cursor.execute("SELECT * FROM annonce WHERE id='{0}'".format(a_id))
         annonce = cursor.fetchone() # prendre une ligne. fetchall() égal à tous les lignes.
+        cursor.execute("SELECT * FROM picture WHERE a_id='{0}'".format(a_id))
         picture = cursor.fetchone()
 
         
@@ -33,16 +34,7 @@ class Annonces(object):
             # Charger et compléter le template HTML
             return self.env.get_template('afficherAnnonce.html').render(image = picture[1], type = annonce[1], auteur = annonce[2], catego = annonce[3], faculty = annonce[4], titre = annonce[5],  desc = annonce[6], prix = annonce[7], prixdesc = annonce[8], datepublic = annonce[9], etat = annonce[10])
         else:
-            return '<h1>Erreur, annonce inexistante</h1>'
+
+            return self.env.get_template('afficherAnnonceErreur.html').render(msg="Erreur, cette annonce n'existe pas")
         
         
-        
-#        db = openDB()
-#        cursor = db.cursor()
-#        cursor.execute("Select * FROM picture WHERE id='{0}'".format(a_id))
-#        annonce=cursor.fetchone()
-#        
-#        cursor.close()
-#        db.close()
-#        if annonce:
-#            return self.env.get_template('afficherAnnonce.html').render(image = picture[3,1])
